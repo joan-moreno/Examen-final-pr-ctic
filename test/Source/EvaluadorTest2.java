@@ -46,7 +46,17 @@ public class EvaluadorTest2 {
             {"Rodrigo",4.06,5.2,0,7},
             {"Enrique",5.0,5.0,5.0,5.0},
             {"Alfredo",7.33,7.0,5.0,10.0},
-            {"James",6.0,3.0,7.0,8.0}
+            {"James",6.0,3.0,7.0,8.0},
+            {"Alejandro",5.6,5.0,6.1,5.7},
+            {"Sergio",4.6,5.0,5.5,3.3},
+            {"Calote",4.06,5.2,0,7},
+            {"Prieto",5.0,5.0,5.0,5.0},
+            {"Jorge",7.33,7.0,5.0,10.0},
+            {"James",5,10,10,0,0},
+            {"Alfonso",5.0,10.0,10.0,10.0},
+            {"Messi",0,0,0,0},
+            {"Frenky",7.5,7.5,7.5,7.5}
+            
         };
         
         return Arrays.asList(data);
@@ -108,7 +118,7 @@ public class EvaluadorTest2 {
      */
     @Test
     public void testMillorEstudiantPerNotaMitjana() {
-//        assertEquals("a",Avaluador.millorEstudiantPerNotaMitjana(instance));
+
     }
     
 }

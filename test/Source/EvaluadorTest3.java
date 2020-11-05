@@ -5,23 +5,49 @@
  */
 package Source;
 
+import java.security.InvalidParameterException;
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.core.Is;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Rule;
+import org.junit.rules.ExpectedException;
+import org.junit.rules.ExternalResource;
+import org.junit.rules.Timeout;
 
 /**
  *
  * @author LJChao-PC
  */
-public class EvaluadorTest1 {
+public class EvaluadorTest3 {
     
     private Estudiant instance;
     private Evaluador Avaluador;
     
-    public EvaluadorTest1() {
+    @Rule
+    public final ExpectedException thrown = ExpectedException.none();
+    
+    @Rule
+    public Timeout globalTimeout = Timeout.millis(20);
+    
+    @Rule
+    public final ExternalResource externalResourse = new ExternalResource(){
+        @Override
+        protected void before() throws Throwable {
+            System.out.println("en before de external resource");
+        };
+        
+        @Override
+        protected void after(){
+            System.out.println("en after de external resource");
+        };
+    };
+    
+    public EvaluadorTest3() {
     }
     
     @BeforeClass
@@ -36,7 +62,7 @@ public class EvaluadorTest1 {
     
     @Before
     public void setUp() {
-        instance = new Estudiant("Joan",5.0,5.0,5.0);
+        instance = null;
         Avaluador = new Evaluador();
         
     }
@@ -52,6 +78,9 @@ public class EvaluadorTest1 {
      */
     @Test
     public void testMitjanaSiSupera() throws Exception {
+        thrown.expect(Exception.class);
+        thrown.expectCause(Is.isA(InvalidParameterException.class));
+        thrown.expectMessage(CoreMatchers.startsWith("El estudiante no puede ser Nulo"));
         assertEquals(5.0,Avaluador.mitjana(instance),0.1);
     }
 
@@ -60,6 +89,9 @@ public class EvaluadorTest1 {
      */
     @Test
     public void testMitjana() throws Exception {
+        thrown.expect(Exception.class);
+        thrown.expectCause(Is.isA(InvalidParameterException.class));
+        thrown.expectMessage(CoreMatchers.startsWith("El estudiante no puede ser Nulo"));
         assertEquals(5.0,Avaluador.mitjana(instance),0.1);
     }
 
@@ -67,11 +99,8 @@ public class EvaluadorTest1 {
      * Test of millorEstudiantPerNotaMitjana method, of class Avaluador.
      */
     @Test
-    public void testMillorEstudiantPerNotaMitjana()throws Exception {
-        Estudiant [] Estudiants = new Estudiant[] {
-            new Estudiant("Adria", 7.0, 6.0, 5.0), 
-            new Estudiant("Edurne", 8.0, 7.0, 9.0),
-            new Estudiant("Nicolas", 4.0, 3.0, 6.0)};
+    public void testMillorEstudiantPerNotaMitjana() {
+        
     }
     
 }
