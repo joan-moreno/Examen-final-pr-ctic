@@ -5,56 +5,53 @@
  */
 package Source;
 
-import java.security.InvalidParameterException;
 import java.util.Arrays;
 import java.util.Collection;
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.core.Is;
 import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
-import org.junit.runners.Parameterized.Parameters;
 
 /**
  *
- * @author Usuario
+ * @author LJChao-PC
  */
-@RunWith(Parameterized.class)
+@RunWith (Parameterized.class)
 public class EvaluadorTest2 {
-    private Evaluador instance;
-
-    @Parameter(0)
-    public Estudiant nom;
-    @Parameter(1)
-    public Estudiant primerParcial;
-    @Parameter(2)
-    public Estudiant segundoParcial;
-    @Parameter(3)
-    public Estudiant tercerParcial;
-
-
     
-    @Parameters
+    private Estudiant instance;
+    private Evaluador Avaluador;
+    
+    @Parameter(0)
+    public String nombre;
+    @Parameter(1)
+    public double media;
+    @Parameter(2)
+    public double primerParcial;
+    @Parameter(3)
+    public double segundoParcial;
+    @Parameter(4)
+    public double tercerParcial;
+    
+    @Parameterized.Parameters
     public static Collection<Object[]> data() {
-        
-        
-        Object[][] data = new Object[][] {
-            {
-                new Estudiant("Pedro", 10, 8, 2), 
-                new Estudiant("Raul", 5, 4, 3),  
-                new Estudiant("Lazaro", 5, 7, 2), 
-                new Estudiant("Rosario", 8, 3, 5), 
-            }   
+        Object[][] data = new Object [][]{
+            {"Pedro",5.6,5.0,6.1,5.7},
+            {"Lorente",4.6,5.0,5.5,3.3},
+            {"Rodrigo",4.06,5.2,0,7},
+            {"Enrique",5.0,5.0,5.0,5.0},
+            {"Alfredo",7.33,7.0,5.0,10.0},
+            {"James",6.0,3.0,7.0,8.0}
         };
+        
         return Arrays.asList(data);
     }
-        
+    
     public EvaluadorTest2() {
     }
     
@@ -70,44 +67,48 @@ public class EvaluadorTest2 {
     
     @Before
     public void setUp() {
-        instance = new Evaluador();
+        instance = new Estudiant(nombre,primerParcial,segundoParcial,tercerParcial);
+        Avaluador = new Evaluador();
+        
     }
     
     @After
     public void tearDown() {
         instance = null;
+        Avaluador = null;
     }
 
     /**
-     * Test of mitjanaSiSupera method, of class Evaluador.
+     * Test of mitjanaSiSupera method, of class Avaluador.
      */
     @Test
-    public void testMitjanaSiSuperathrows() throws Exception {
-        thrown.expect(Exception.class);
-        thrown.expectCause(Is.isA(InvalidParameterException.class));
-     thrown.expectMessage(CoreMatchers.startsWith("Nota insuficiente"));   
-    }
-
-    /**
-     * Test of mitjana method, of class Evaluador.
-     */
-    @Test
-    public void testMitjana() throws Exception {
-        instance.mitjana(nom);
-        instance.mitjana(primerParcial);
-        instance.mitjana(segundoParcial);
-        instance.mitjana(tercerParcial);   
-        instance.mitjana(Estudiant);
+    public void testMitjanaSiSupera() throws Exception {
+        double mediaAv = Avaluador.mitjanaSiSupera(instance);
+        if (mediaAv == 0) {
+            assertEquals(0,mediaAv,0.1);
+        }
+        else {
+            assertEquals(media,mediaAv,0.1);
+        }
+        
         
     }
 
     /**
-     * Test of millorEstudiantPerNotaMitjana method, of class Evaluador.
+     * Test of mitjana method, of class Avaluador.
      */
     @Test
-    public void testMillorEstudiantPerNotaMitjana() throws Exception {
-
-    
+    public void testMitjana() throws Exception {
+        assertEquals(media,Avaluador.mitjana(instance),0.1);
+        
     }
-   
+
+    /**
+     * Test of millorEstudiantPerNotaMitjana method, of class Avaluador.
+     */
+    @Test
+    public void testMillorEstudiantPerNotaMitjana() {
+//        assertEquals("a",Avaluador.millorEstudiantPerNotaMitjana(instance));
+    }
+    
 }
