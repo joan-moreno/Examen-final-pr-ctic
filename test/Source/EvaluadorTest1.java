@@ -12,10 +12,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author LJChao-PC
- */
 public class EvaluadorTest1 {
     
     private Estudiant instance;

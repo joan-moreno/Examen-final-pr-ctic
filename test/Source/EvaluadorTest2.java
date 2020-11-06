@@ -93,7 +93,7 @@ public class EvaluadorTest2 {
      */
     @Test
     public void testMitjanaSiSupera() throws Exception {
-        double mediaAv = Avaluador.mitjanaSiSupera(instance);
+        double mediaAv = Avaluador.MitjanaSiSupera(instance);
         if (mediaAv == 0) {
             assertEquals(0,mediaAv,0.1);
         }

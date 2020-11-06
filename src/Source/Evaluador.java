@@ -56,7 +56,7 @@ public class Evaluador {
      * notaSupera
      * @throws Exception 
      */
-    public double mitjanaSiSupera(Estudiant estudiant) throws Exception {
+    public double MitjanaSiSupera(Estudiant estudiant) throws Exception {
         double sumaNotes = 0;
 
         if (estudiant == null) {
